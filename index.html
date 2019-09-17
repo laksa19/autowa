@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html>
@@ -10,8 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <link href="lib/css/emoji.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.css">
+      <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+      <script type="text/javascript" src="js/jquery.emojipicker.js"></script>
+
+      <!-- Emoji Data -->
+      <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.a.css">
+      <script type="text/javascript" src="js/jquery.emojipicker.a.js"></script>
         <link rel="icon" href="favicon.png" />
         <title>Auto WhatsApp</title>
         <style>
@@ -57,7 +61,8 @@
                 resize: none;
                 outline: none;
             }
-             a{
+            
+            a{
                 font-size:14px;
                 color: #07AF51;
             }
@@ -71,11 +76,6 @@
             table td{
                 padding:5px;
             }
-            table {
-                width: 800px;
-                min-width: 800px;
-                max-width: 800px;
-            }
             .main{
                 width: 800px;
             }
@@ -87,6 +87,13 @@
             .form-control:focus {
               border-color: rgba(126, 239, 104, 0.8);
               box-shadow: none;
+            }
+            #picker{
+                cursor: pointer; 
+                float: right;
+                position: fixed;
+                margin-left:2px;
+                z-index: 2;
             }
 
             
@@ -122,7 +129,7 @@
                                 <textarea class="form-control textarea-control" id="bulkNoHP" rows="16" cols="15" style="text-decoration: underline;"></textarea>
                             </div>
                         </td>
-                        <td style="min-width: 320px;max-width: 320px;width: 320px;">
+                        <td style="min-width: 320px;">
                             <div style="vertical-align: bottom;">
                                 <span>How to use?</span>
                                 <ol>
@@ -155,11 +162,11 @@
                                 
                         
                             <div>
+                               
                                 <label>Message</label>
-                                
-                                
-                                <div class="lead emoji-picker-container ">
-                                  <textarea id="pesan" class="form-control textarea-control col-12" rows="5" data-emojiable="true" data-emoji-input="unicode"></textarea>
+                                <div>
+                                  <span id="picker"><i class="fa fa-smile-o"></i></span>
+                                  <textarea id="pesan" class="form-control textarea-control col-12 emojiable-question" rows="5" data-emojiable="true" data-emoji-input="unicode"></textarea>
                                 </div>
                                 <button onclick="saveGukoWA()">SAVE</button>
                                 <button onclick="kirimWA()">SEND</button>
@@ -167,9 +174,9 @@
                             
                         </td>
                         <td style="min-width: 300px;">
-                            <label>Message Preview </label> <small onclick="edit()" style="cursor: pointer" ><i class="fa fa-edit" ></i> Edit</small>
+                            <label>Message Preview </label>
                             
-                            <textarea id="s_pesan" onclick="edit()" title="Click to edit 😄" class="form-control textarea-control col-12 bg-white" rows="16"" readonly ></textarea>
+                            <textarea id="s_pesan" class="form-control textarea-control col-12 bg-white" rows="16"" readonly ></textarea>
                         </td>
                     </tr>
                 
@@ -208,29 +215,12 @@
     <script>
 
 
-    var _0x24ae=["\x70\x61\x64\x64\x69\x6E\x67","\x73\x74\x79\x6C\x65","\x62\x6F\x64\x79","\x32\x30\x25","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x3C\x63\x65\x6E\x74\x65\x72\x3E\x3C\x64\x69\x76\x3E\x3C\x68\x31\x3E\x3A\x28\x3C\x2F\x68\x31\x3E\x3C\x68\x33\x3E\x50\x6C\x65\x61\x73\x65\x20\x64\x69\x73\x61\x62\x6C\x65\x20\x79\x6F\x75\x72\x20\x41\x64\x20\x42\x6C\x6F\x63\x6B\x65\x72\x3C\x2F\x64\x69\x76\x3E\x3C\x2F\x63\x65\x6E\x74\x65\x72\x3E","\x73\x63\x72\x69\x70\x74","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x74\x79\x70\x65","\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74","\x61\x73\x79\x6E\x63","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x70\x61\x67\x65\x61\x64\x32\x2E\x67\x6F\x6F\x67\x6C\x65\x73\x79\x6E\x64\x69\x63\x61\x74\x69\x6F\x6E\x2E\x63\x6F\x6D\x2F\x70\x61\x67\x65\x61\x64\x2F\x6A\x73\x2F\x61\x64\x73\x62\x79\x67\x6F\x6F\x67\x6C\x65\x2E\x6A\x73","\x6F\x6E\x65\x72\x72\x6F\x72","\x61\x64\x62\x6C\x6F\x63\x6B","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x69\x6E\x73\x65\x72\x74\x42\x65\x66\x6F\x72\x65","\x70\x61\x72\x65\x6E\x74\x4E\x6F\x64\x65","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x6C\x61\x6B\x73\x61\x31\x39\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x61\x75\x74\x6F\x77\x61\x2F\x72\x75\x6E\x3F\x6E\x3D\x30","\x5F\x62\x6C\x61\x6E\x6B","\x6F\x70\x65\x6E","\x67\x75\x6B\x6F\x57\x41\x5F\x49\x6E\x74\x65\x72\x76\x61\x6C","\x67\x65\x74\x49\x74\x65\x6D","\x76\x61\x6C\x75\x65","\x69\x6E\x74\x65\x72\x76\x61\x6C","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x73\x65\x74\x49\x74\x65\x6D","\x67\x75\x6B\x6F\x57\x41\x5F\x63\x63","\x0A","\x73\x70\x6C\x69\x74","\x6C\x65\x6E\x67\x74\x68","\x68\x6F\x73\x74\x6E\x61\x6D\x65","\x6C\x6F\x63\x61\x74\x69\x6F\x6E","\x6C\x61\x6B\x73\x61\x31\x39\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F","\x3C\x63\x65\x6E\x74\x65\x72\x20\x73\x74\x79\x6C\x65\x3D\x27\x6D\x61\x72\x67\x69\x6E\x2D\x74\x6F\x70\x3A\x31\x35\x25\x3B\x27\x3E\x3C\x68\x31\x3E\x58\x28\x3C\x2F\x68\x31\x3E\x3C\x2F\x63\x65\x6E\x74\x65\x72\x3E","\x62\x75\x6C\x6B\x4E\x6F\x48\x50","\x70\x65\x73\x61\x6E","\x72\x65\x70\x6C\x61\x63\x65","\x63\x63","","\x67\x75\x6B\x6F\x57\x41\x4E\x6F\x48\x50","\x67\x75\x6B\x6F\x57\x41\x50\x65\x73\x61\x6E","\x73\x5F\x70\x65\x73\x61\x6E","\x74\x6F\x74","\x53\x65\x6E\x64\x20\x74\x6F\x20\x5B","\x5D","\x3C\x62\x72\x20\x2F\x3E","\x65\x6D\x6F\x6A\x69\x2D\x77\x79\x73\x69\x77\x79\x67\x2D\x65\x64\x69\x74\x6F\x72","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x43\x6C\x61\x73\x73\x4E\x61\x6D\x65","\x30\x38\x31\x32\x33\x34\x35\x36\x37\x38\x39\x30","\x20"];!function(){function _0xd541x1(){document[_0x24ae[2]][_0x24ae[1]][_0x24ae[0]]= _0x24ae[3];document[_0x24ae[2]][_0x24ae[4]]= _0x24ae[5]}var _0xd541x2=document[_0x24ae[7]](_0x24ae[6]);_0xd541x2[_0x24ae[8]]= _0x24ae[9];_0xd541x2[_0x24ae[10]]=  !0;_0xd541x2[_0x24ae[11]]= _0x24ae[12];_0xd541x2[_0x24ae[13]]= function(){_0xd541x1();window[_0x24ae[14]]=  !0};var _0xd541x3=document[_0x24ae[15]](_0x24ae[6])[0];_0xd541x3[_0x24ae[17]][_0x24ae[16]](_0xd541x2,_0xd541x3)}();function kirimWA(){saveGukoWA();var _0xd541x5=_0x24ae[18];window[_0x24ae[20]](_0xd541x5,_0x24ae[19])}if(localStorage[_0x24ae[22]](_0x24ae[21])){document[_0x24ae[25]](_0x24ae[24])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[21])}else {if(!localStorage[_0x24ae[22]](_0x24ae[21])){localStorage[_0x24ae[26]](_0x24ae[21],10);localStorage[_0x24ae[26]](_0x24ae[27],62);document[_0x24ae[25]](_0x24ae[24])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[21])}};function countL(_0xd541x7){var _0xd541x8=_0xd541x7[_0x24ae[29]](_0x24ae[28]);var _0xd541x9=0;for(var _0xd541xa=0;_0xd541xa< _0xd541x8[_0x24ae[30]];_0xd541xa++){if(_0xd541x8[_0xd541xa]){_0xd541x9++}};return _0xd541x9}var hname=window[_0x24ae[32]][_0x24ae[31]];if(hname!= _0x24ae[33]){document[_0x24ae[15]](_0x24ae[2])[0][_0x24ae[4]]= _0x24ae[34]};function saveGukoWA(){var _0xd541x7=document[_0x24ae[25]](_0x24ae[35])[_0x24ae[23]];var _0xd541xd=document[_0x24ae[25]](_0x24ae[36])[_0x24ae[23]];var _0xd541xe=_0xd541x7[_0x24ae[37]](/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/g,_0x24ae[28]);var _0xd541xf=document[_0x24ae[25]](_0x24ae[24])[_0x24ae[23]];var _0xd541x10=document[_0x24ae[25]](_0x24ae[38])[_0x24ae[23]];if(_0xd541xf< 5){intX= 5}else {intX= _0xd541xf};if(_0xd541xd== _0x24ae[39]){}else {localStorage[_0x24ae[26]](_0x24ae[40],_0xd541xe);localStorage[_0x24ae[26]](_0x24ae[41],_0xd541xd);document[_0x24ae[25]](_0x24ae[35])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[40]);document[_0x24ae[25]](_0x24ae[36])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[41]);document[_0x24ae[25]](_0x24ae[42])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[41]);document[_0x24ae[25]](_0x24ae[43])[_0x24ae[4]]= _0x24ae[44]+ countL(_0xd541x7)+ _0x24ae[45];localStorage[_0x24ae[26]](_0x24ae[21],intX);document[_0x24ae[25]](_0x24ae[24])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[21]);localStorage[_0x24ae[26]](_0x24ae[27],_0xd541x10);document[_0x24ae[25]](_0x24ae[38])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[27]);var _0xd541x11=document[_0x24ae[25]](_0x24ae[36])[_0x24ae[23]];_0xd541x11= _0xd541x11[_0x24ae[37]](/(?:\r\n|\r|\n)/g,_0x24ae[46]);document[_0x24ae[48]](_0x24ae[47])[0][_0x24ae[4]]= _0xd541x11}}function edit(){var _0xd541x11=document[_0x24ae[25]](_0x24ae[42])[_0x24ae[23]];_0xd541x11= _0xd541x11[_0x24ae[37]](/(?:\r\n|\r|\n)/g,_0x24ae[46]);document[_0x24ae[48]](_0x24ae[47])[0][_0x24ae[4]]= _0xd541x11}if(localStorage[_0x24ae[22]](_0x24ae[40])){document[_0x24ae[25]](_0x24ae[35])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[40]);document[_0x24ae[25]](_0x24ae[42])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[41]);document[_0x24ae[25]](_0x24ae[36])[_0x24ae[23]]= _0x24ae[39];document[_0x24ae[25]](_0x24ae[43])[_0x24ae[4]]= _0x24ae[44]+ countL(localStorage[_0x24ae[22]](_0x24ae[40]))+ _0x24ae[45];document[_0x24ae[25]](_0x24ae[38])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[27]);document[_0x24ae[25]](_0x24ae[24])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[21])}else {localStorage[_0x24ae[26]](_0x24ae[40],_0x24ae[49]);localStorage[_0x24ae[26]](_0x24ae[41],_0x24ae[50]);document[_0x24ae[25]](_0x24ae[35])[_0x24ae[23]]= localStorage[_0x24ae[22]](_0x24ae[40])}
+    var _0x7cc9=["\x70\x61\x64\x64\x69\x6E\x67","\x73\x74\x79\x6C\x65","\x62\x6F\x64\x79","\x32\x30\x25","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x3C\x63\x65\x6E\x74\x65\x72\x3E\x3C\x64\x69\x76\x3E\x3C\x68\x31\x3E\x3A\x28\x3C\x2F\x68\x31\x3E\x3C\x68\x33\x3E\x50\x6C\x65\x61\x73\x65\x20\x64\x69\x73\x61\x62\x6C\x65\x20\x79\x6F\x75\x72\x20\x41\x64\x20\x42\x6C\x6F\x63\x6B\x65\x72\x3C\x2F\x64\x69\x76\x3E\x3C\x2F\x63\x65\x6E\x74\x65\x72\x3E","\x73\x63\x72\x69\x70\x74","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x74\x79\x70\x65","\x74\x65\x78\x74\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74","\x61\x73\x79\x6E\x63","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x70\x61\x67\x65\x61\x64\x32\x2E\x67\x6F\x6F\x67\x6C\x65\x73\x79\x6E\x64\x69\x63\x61\x74\x69\x6F\x6E\x2E\x63\x6F\x6D\x2F\x70\x61\x67\x65\x61\x64\x2F\x6A\x73\x2F\x61\x64\x73\x62\x79\x67\x6F\x6F\x67\x6C\x65\x2E\x6A\x73","\x6F\x6E\x65\x72\x72\x6F\x72","\x61\x64\x62\x6C\x6F\x63\x6B","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x69\x6E\x73\x65\x72\x74\x42\x65\x66\x6F\x72\x65","\x70\x61\x72\x65\x6E\x74\x4E\x6F\x64\x65","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x6C\x61\x6B\x73\x61\x31\x39\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x61\x75\x74\x6F\x77\x61\x2F\x72\x75\x6E\x3F\x6E\x3D\x30","\x5F\x62\x6C\x61\x6E\x6B","\x6F\x70\x65\x6E","\x67\x75\x6B\x6F\x57\x41\x5F\x49\x6E\x74\x65\x72\x76\x61\x6C","\x67\x65\x74\x49\x74\x65\x6D","\x76\x61\x6C\x75\x65","\x69\x6E\x74\x65\x72\x76\x61\x6C","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x73\x65\x74\x49\x74\x65\x6D","\x67\x75\x6B\x6F\x57\x41\x5F\x63\x63","\x0A","\x73\x70\x6C\x69\x74","\x6C\x65\x6E\x67\x74\x68","\x68\x6F\x73\x74\x6E\x61\x6D\x65","\x6C\x6F\x63\x61\x74\x69\x6F\x6E","\x6C\x61\x6B\x73\x61\x31\x39\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F","\x3C\x63\x65\x6E\x74\x65\x72\x20\x73\x74\x79\x6C\x65\x3D\x27\x6D\x61\x72\x67\x69\x6E\x2D\x74\x6F\x70\x3A\x31\x35\x25\x3B\x27\x3E\x3C\x68\x31\x3E\x58\x28\x3C\x2F\x68\x31\x3E\x3C\x2F\x63\x65\x6E\x74\x65\x72\x3E","\x62\x75\x6C\x6B\x4E\x6F\x48\x50","\x70\x65\x73\x61\x6E","\x72\x65\x70\x6C\x61\x63\x65","\x63\x63","","\x67\x75\x6B\x6F\x57\x41\x4E\x6F\x48\x50","\x67\x75\x6B\x6F\x57\x41\x50\x65\x73\x61\x6E","\x73\x5F\x70\x65\x73\x61\x6E","\x74\x6F\x74","\x53\x65\x6E\x64\x20\x74\x6F\x20\x5B","\x5D","\x30\x38\x31\x32\x33\x34\x35\x36\x37\x38\x39\x30","\x20","\x33\x30\x30\x70\x78","\x32\x30\x30\x70\x78","\x65\x6D\x6F\x6A\x69\x50\x69\x63\x6B\x65\x72","\x2E\x65\x6D\x6F\x6A\x69\x61\x62\x6C\x65\x2D\x71\x75\x65\x73\x74\x69\x6F\x6E","\x31\x30\x30\x70\x78","\x2E\x65\x6D\x6F\x6A\x69\x61\x62\x6C\x65\x2D\x6F\x70\x74\x69\x6F\x6E","\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74","\x74\x6F\x67\x67\x6C\x65","\x23\x70\x65\x73\x61\x6E","\x63\x6C\x69\x63\x6B","\x23\x70\x69\x63\x6B\x65\x72","\x72\x65\x61\x64\x79"];!function(){function _0x6d91x1(){document[_0x7cc9[2]][_0x7cc9[1]][_0x7cc9[0]]= _0x7cc9[3];document[_0x7cc9[2]][_0x7cc9[4]]= _0x7cc9[5]}var _0x6d91x2=document[_0x7cc9[7]](_0x7cc9[6]);_0x6d91x2[_0x7cc9[8]]= _0x7cc9[9];_0x6d91x2[_0x7cc9[10]]=  !0;_0x6d91x2[_0x7cc9[11]]= _0x7cc9[12];_0x6d91x2[_0x7cc9[13]]= function(){_0x6d91x1();window[_0x7cc9[14]]=  !0};var _0x6d91x3=document[_0x7cc9[15]](_0x7cc9[6])[0];_0x6d91x3[_0x7cc9[17]][_0x7cc9[16]](_0x6d91x2,_0x6d91x3)}();function kirimWA(){saveGukoWA();var _0x6d91x5=_0x7cc9[18];window[_0x7cc9[20]](_0x6d91x5,_0x7cc9[19])}if(localStorage[_0x7cc9[22]](_0x7cc9[21])){document[_0x7cc9[25]](_0x7cc9[24])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[21])}else {if(!localStorage[_0x7cc9[22]](_0x7cc9[21])){localStorage[_0x7cc9[26]](_0x7cc9[21],10);localStorage[_0x7cc9[26]](_0x7cc9[27],62);document[_0x7cc9[25]](_0x7cc9[24])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[21])}};function countL(_0x6d91x7){var _0x6d91x8=_0x6d91x7[_0x7cc9[29]](_0x7cc9[28]);var _0x6d91x9=0;for(var _0x6d91xa=0;_0x6d91xa< _0x6d91x8[_0x7cc9[30]];_0x6d91xa++){if(_0x6d91x8[_0x6d91xa]){_0x6d91x9++}};return _0x6d91x9}var hname=window[_0x7cc9[32]][_0x7cc9[31]];if(hname!= _0x7cc9[33]){document[_0x7cc9[15]](_0x7cc9[2])[0][_0x7cc9[4]]= _0x7cc9[34]};function saveGukoWA(){var _0x6d91x7=document[_0x7cc9[25]](_0x7cc9[35])[_0x7cc9[23]];var _0x6d91xd=document[_0x7cc9[25]](_0x7cc9[36])[_0x7cc9[23]];var _0x6d91xe=_0x6d91x7[_0x7cc9[37]](/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/g,_0x7cc9[28]);var _0x6d91xf=document[_0x7cc9[25]](_0x7cc9[24])[_0x7cc9[23]];var _0x6d91x10=document[_0x7cc9[25]](_0x7cc9[38])[_0x7cc9[23]];if(_0x6d91xf< 5){intX= 5}else {intX= _0x6d91xf};if(_0x6d91xd== _0x7cc9[39]){}else {localStorage[_0x7cc9[26]](_0x7cc9[40],_0x6d91xe);localStorage[_0x7cc9[26]](_0x7cc9[41],_0x6d91xd);document[_0x7cc9[25]](_0x7cc9[35])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[40]);document[_0x7cc9[25]](_0x7cc9[36])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[41]);document[_0x7cc9[25]](_0x7cc9[42])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[41]);document[_0x7cc9[25]](_0x7cc9[43])[_0x7cc9[4]]= _0x7cc9[44]+ countL(_0x6d91x7)+ _0x7cc9[45];localStorage[_0x7cc9[26]](_0x7cc9[21],intX);document[_0x7cc9[25]](_0x7cc9[24])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[21]);localStorage[_0x7cc9[26]](_0x7cc9[27],_0x6d91x10);document[_0x7cc9[25]](_0x7cc9[38])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[27])}}if(localStorage[_0x7cc9[22]](_0x7cc9[40])){document[_0x7cc9[25]](_0x7cc9[35])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[40]);document[_0x7cc9[25]](_0x7cc9[42])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[41]);document[_0x7cc9[25]](_0x7cc9[36])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[41]);document[_0x7cc9[25]](_0x7cc9[43])[_0x7cc9[4]]= _0x7cc9[44]+ countL(localStorage[_0x7cc9[22]](_0x7cc9[40]))+ _0x7cc9[45];document[_0x7cc9[25]](_0x7cc9[38])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[27]);document[_0x7cc9[25]](_0x7cc9[24])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[21])}else {localStorage[_0x7cc9[26]](_0x7cc9[40],_0x7cc9[46]);localStorage[_0x7cc9[26]](_0x7cc9[41],_0x7cc9[47]);document[_0x7cc9[25]](_0x7cc9[35])[_0x7cc9[23]]= localStorage[_0x7cc9[22]](_0x7cc9[40])};$(document)[_0x7cc9[59]](function(_0x6d91x11){$(_0x7cc9[51])[_0x7cc9[50]]({width:_0x7cc9[48],height:_0x7cc9[49],button:false});$(_0x7cc9[53])[_0x7cc9[50]]({width:_0x7cc9[49],height:_0x7cc9[52]});$(_0x7cc9[58])[_0x7cc9[57]](function(_0x6d91x11){_0x6d91x11[_0x7cc9[54]]();$(_0x7cc9[56])[_0x7cc9[50]](_0x7cc9[55])})})
         var _0x948f=["\x67\x65\x74\x44\x61\x74\x65","\x73\x65\x74\x44\x61\x74\x65","\x3B\x70\x61\x74\x68\x3D\x2F","\x3B\x20\x65\x78\x70\x69\x72\x65\x73\x3D","\x74\x6F\x55\x54\x43\x53\x74\x72\x69\x6E\x67","\x63\x6F\x6F\x6B\x69\x65","\x3D","\x3B","\x73\x70\x6C\x69\x74","\x6C\x65\x6E\x67\x74\x68","\x69\x6E\x64\x65\x78\x4F\x66","\x73\x75\x62\x73\x74\x72","","\x72\x65\x70\x6C\x61\x63\x65","\x31","\x61\x64\x73\x53\x68\x69\x65\x6C\x64","\x2E\x61\x64\x73\x53\x68\x69\x65\x6C\x64","\x66\x61\x73\x74","\x68\x69\x64\x65","\x6D\x6F\x75\x73\x65\x6F\x75\x74","\x62\x69\x6E\x64","\x6D\x6F\x75\x73\x65\x6F\x76\x65\x72","\x62\x65\x66\x6F\x72\x65\x75\x6E\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x61\x64\x79"];function ASSetCookie(_0xee6fx2,_0xee6fx3,_0xee6fx4){var _0xee6fx5= new Date;_0xee6fx5[_0x948f[1]](_0xee6fx5[_0x948f[0]]()+ _0xee6fx4);var _0xee6fx6=escape(_0xee6fx3)+ (0== _0xee6fx4?_0x948f[2]:_0x948f[3]+ _0xee6fx5[_0x948f[4]]())+ _0x948f[2];document[_0x948f[5]]= _0xee6fx2+ _0x948f[6]+ _0xee6fx6}function ASGetCookie(_0xee6fx2){var _0xee6fx3,_0xee6fx4,_0xee6fx5,_0xee6fx6=document[_0x948f[5]][_0x948f[8]](_0x948f[7]);for(_0xee6fx3= 0;_0xee6fx3< _0xee6fx6[_0x948f[9]];_0xee6fx3++){if(_0xee6fx4= _0xee6fx6[_0xee6fx3][_0x948f[11]](0,_0xee6fx6[_0xee6fx3][_0x948f[10]](_0x948f[6])),_0xee6fx5= _0xee6fx6[_0xee6fx3][_0x948f[11]](_0xee6fx6[_0xee6fx3][_0x948f[10]](_0x948f[6])+ 1),_0xee6fx4= _0xee6fx4[_0x948f[13]](/^\s+|\s+$/g,_0x948f[12]),_0xee6fx4== _0xee6fx2){return unescape(_0xee6fx5)}}}function ASSetCookieAds(_0xee6fx2,_0xee6fx3){var _0xee6fx4=ASGetCookie(_0xee6fx2);void(0)!= _0xee6fx4&& _0x948f[12]!= _0xee6fx4?(ASTheCookieInt= parseInt(_0xee6fx4)+ 1,ASSetCookie(_0xee6fx2,ASTheCookieInt.toString(),0)):ASSetCookie(_0xee6fx2,_0x948f[14],_0xee6fx3)}function ASMaxClick(_0xee6fx2,_0xee6fx3){var _0xee6fx4=ASGetCookie(_0xee6fx2);return void(0)!= _0xee6fx4&& parseInt(_0xee6fx4)>= _0xee6fx3?!0:!1}jQuery(document)[_0x948f[24]](function(_0xee6fx2){var _0xee6fx3=_0x948f[15],_0xee6fx4=7,_0xee6fx5=3,_0xee6fx6=_0x948f[16],_0xee6fxa=!1;ASMaxClick(_0xee6fx3,_0xee6fx5)&& _0xee6fx2(_0xee6fx6)[_0x948f[18]](_0x948f[17]),_0xee6fx2(_0xee6fx6)[_0x948f[20]](_0x948f[21],function(){_0xee6fxa=  !0})[_0x948f[20]](_0x948f[19],function(){_0xee6fxa=  !1}),_0xee6fx2(window)[_0x948f[23]](_0x948f[22],function(){_0xee6fxa&& (ASMaxClick(_0xee6fx3,_0xee6fx5)?_0xee6fx2(_0xee6fx6)[_0x948f[18]](_0x948f[17]):ASSetCookieAds(_0xee6fx3,_0xee6fx4))})})
 
-    $(function() {
-        // Initializes and creates emoji set from sprite sheet
-        window.emojiPicker = new EmojiPicker({
-          emojiable_selector: '[data-emojiable=true]',
-          assetsPath: 'lib/img/',
-          popupButtonClasses: 'fa fa-smile-o'
-        });
-        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
-        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
-        // It can be called as many times as necessary; previously converted input fields will not be converted again
-        window.emojiPicker.discover();
-      });
     </script>
     
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- Begin emoji-picker JavaScript -->
-    <script src="lib/js/config.js"></script>
-    <script src="lib/js/util.js"></script>
-    <script src="lib/js/jquery.emojiarea.js"></script>
-    <script src="lib/js/emoji-picker.js"></script>
-    <!-- End emoji-picker JavaScript -->
+
     </body>
 </html>
