@@ -4,7 +4,7 @@
 // @updateURL    https://raw.githubusercontent.com/laksa19/autowa/master/autowa.user.js
 // @downloadURL  https://raw.githubusercontent.com/laksa19/autowa/master/autowa.user.js
 // @iconURL      https://raw.githubusercontent.com/laksa19/autowa/master/favicon.png
-// @version      0.1.59
+// @version      0.1.60
 // @author       Laksamadi Guko
 // @description  Tool Auto Send for WhatsApp Web
 // @match        https://web.whatsapp.com/*
